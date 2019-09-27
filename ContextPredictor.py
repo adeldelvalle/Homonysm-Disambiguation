@@ -227,9 +227,7 @@ def lesk(context_sentence, ambiguous_word, pos=None, stem=True, hyperhypo=True):
     return lesk_sense
 
 
-
-
-# Cuenta de desarrollador que se emplea para sacar la información de Twitter
+# Twitter Developer account
 consumer_key = 'foi4XYdbbbCs0YiYvpTRrx9wE'
 consumer_secret = 'CaU79UUkSYzLMTWxJKV5aoBDUm4tFf3BSZjED17z2aSDJBGZIj'
 access_token = '1120708300746760194-rHuXz4UqtEeMjIO2wZNZrTMxc4seKI'
@@ -239,7 +237,7 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
-
+#Creating the respective labels and GUI
 root = Tk()
 label1 = Label(root, text="Homónimo")
 E1 = Entry(root, bd=5)
@@ -256,61 +254,8 @@ lista2 = []
 
 ps = PorterStemmer()
 
-# Read the corpus into a list,
-# each entry in the list is one sentence.
-cess_sents = cess.tagged_sents()
-
-# Train the unigram tagger
-uni_tag = ut(cess_sents)
-
-sentence = "Hola , esta foo bar ."
-
-# Tagger reads a list of tokens.
-uni_tag.tag(sentence.split(" "))
-
-# Split corpus into training and testing set.
-train = int(len(cess_sents)*90/100) # 90%
-
-# Train a bigram tagger with only training data.
-bi_tag = bt(cess_sents[:train])
-
-# Evaluates on testing data remaining 10%
-bi_tag.evaluate(cess_sents[train+1:])
-
-# Using the tagger.
-#bi_tag.tag(sentence.split(" "))
-
 
 submit = Button(root, text="Someter", command=getData)
-# Read the corpus into a list,
-# each entry in the list is one sentence.
-# text = LazyCorpusLoader('cookbook', TaggedCorpusReader, ["corpus.txt", "corpus2.txt"])
-# texto = text.tagged_sents()
-#
-# # Train the unigram tagger
-# uni_tag = ut(texto, train="1")
-#
-# sentence = "Hola , esta foo bar ."
-#
-#
-# uni_tag.tag(sentence.split(" "))
-#
-# # Split corpus into training and testing set.
-# train = int(len(texto) * 90 / 100)  # 90%
-#
-# # Train a bigram tagger with only training data.
-# bi_tag = bt(texto[:train])
-#
-# # Evaluates on testing data remaining 10%
-# bi_tag.evaluate(texto[train + 1:])
-#
-# # Using the tagger.
-# #bi_tag.tag(sentence.split(" "))
-#path = os.path.expanduser('~\\nltk_data')
-#if not os.path.exists(path):
-  #  os.mkdir(path)
-#print(path in nltk.data.path)
-
 
 root.wm_title('Mutación en Sede')
 label1.pack()
